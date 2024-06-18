@@ -1,4 +1,4 @@
-# reserva_de_hotel
+# Reserva de Hotel
 
 # Proyecto de Reserva de Habitaciones
 
