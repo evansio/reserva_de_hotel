@@ -91,7 +91,7 @@ Para un desarrollo eficiente en VSCode, se recomienda instalar las siguientes ex
 │   │   ├── styles.css
 └── templates
     └── base.html
-
+```
 -- myproject: Contiene la configuración del proyecto Django.
 -- rooms: Aplicación que maneja las funcionalidades relacionadas con las habitaciones.
 -- static: Archivos estáticos como CSS.
