@@ -92,10 +92,10 @@ Para un desarrollo eficiente en VSCode, se recomienda instalar las siguientes ex
 └── templates
     └── base.html
 ```
--- myproject: Contiene la configuración del proyecto Django.
--- rooms: Aplicación que maneja las funcionalidades relacionadas con las habitaciones.
--- static: Archivos estáticos como CSS.
--- templates: Plantillas HTML.
+- myproject: Contiene la configuración del proyecto Django.
+- rooms: Aplicación que maneja las funcionalidades relacionadas con las habitaciones.
+- static: Archivos estáticos como CSS.
+- templates: Plantillas HTML.
 
 Comentarios en el Código
 A continuación se incluyen ejemplos de comentarios en el código. Estos comentarios deben colocarse para mejorar la legibilidad y comprensión del código.
