@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Occupancy Stats</title>
+</head>
+<body>
+    <h1>Occupancy Stats</h1>
+    <ul>
+        {% for room in stats %}
+            <li>
+                {{ room.room_number }} - {{ room.room_type }} - {{ room.total_reservations }} reservations
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

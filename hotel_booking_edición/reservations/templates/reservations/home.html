@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Booking System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 0 20px;
+        }
+        .header, .section, .footer {
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .header {
+            background-color: #f4f4f4;
+        }
+        .section img {
+            max-width: 60%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .medium-image {
+            max-width: 50%;
+            height: auto;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-block;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .menu .button {
+            background-color: #45a049;
+        }
+        .menu .button:hover {
+            background-color: #45a049;
+        }
+        .testimonial {
+            font-style: italic;
+            margin: 20px 0;
+        }
+        .room-type {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .room {
+            flex: 1;
+            margin: 10px;
+            max-width: 300px;
+            text-align: left;
+        }
+        .room img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="{% url 'room_list' %}" class="button">View Rooms</a>
+        {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+            <a href="{% url 'occupancy_stats' %}" class="button">View Occupancy Stats</a>
+            {% endif %}
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="button">Logout</button>
+            </form>
+        {% else %}
+        <a href="{% url 'login' %}" class="button">Login</a>
+        <a href="{% url 'register' %}" class="button">Register</a>
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="section">
+            <h2>Our Rooms</h2>
+            <div class="room-type">
+                <div class="room">
+                    <img src="https://amorgoshotel.com/wp-content/uploads/2014/12/Amorgos-Standard-Room1-e1464286427430.jpg" alt="Standard Room">
+                    <h3>Standard Room</h3>
+                    <p>A cozy and comfortable room with all the basic amenities to make your stay pleasant. Ideal for solo travelers or couples.</p>
+                </div>
+                <div class="room">
+                    <img src="https://techcrunch.com/wp-content/uploads/2016/12/dream-presidential-suite-terrace.jpg?resize=1536,1032" alt="Deluxe Room">
+                    <h3>Deluxe Room</h3>
+                    <p>A spacious room with premium amenities, including a king-sized bed, minibar, and a stunning city view. Perfect for a luxurious getaway.</p>
+                </div>
+                <div class="room">
+                    <img src="https://casasymasnicaragua.wordpress.com/wp-content/uploads/2013/05/hotel-submarino-poseidon-undersea-resort-3.jpg?w=768" alt="Suite Room">
+                    <h3>Suite Room</h3>
+                    <p>An expansive suite with separate living and sleeping areas, a kitchenette, and exclusive access to our executive lounge. Ideal for families or business travelers.</p>
+                </div>
+            </div>
+            <a href="{% url 'room_list' %}" class="button">View Rooms</a>
+        </div>
+        <div class="header">
+            <h1>Welcome to the Hotel Booking System!</h1>
+            <p>Experience luxury and comfort like never before at our exquisite hotel. Perfectly situated in the heart of the city, our hotel offers top-notch amenities and exceptional service.</p>
+        </div>
+        <div class="section">
+            <h2>Why Choose Us?</h2>
+            <img src="https://s1.abcstatics.com/media/summum/2018/11/06/hotel-kdfH--1248x698@abc.JPG" alt="Hotel Image" class="medium-image">
+            <p>Our hotel boasts beautifully appointed rooms, a state-of-the-art fitness center, and gourmet dining options that cater to every palate. Whether you're here for business or leisure, we ensure a memorable stay.</p>
+            <p>Enjoy complimentary Wi-Fi, 24/7 room service, and stunning views from our rooftop terrace. We prioritize your comfort and satisfaction above all.</p>
+        </div>
+        <div class="section">
+            <h2>Customer Testimonials</h2>
+            <div class="testimonial">
+                <p>"The best hotel experience I've ever had! The staff were incredibly friendly and the rooms were pristine."</p>
+                <p>- Jane Doe</p>
+            </div>
+            <div class="testimonial">
+                <p>"A true home away from home. The amenities were top-notch and the location couldn't be better."</p>
+                <p>- John Smith</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

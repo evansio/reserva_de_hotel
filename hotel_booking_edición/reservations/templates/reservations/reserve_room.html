@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserve Room</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .room-info {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .room-info img {
+            width: 300px; /* Establece un ancho fijo */
+            height: auto; /* Mantén la proporción de la imagen */
+            border-radius: 5px;
+        }
+        .button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .menu .button {
+            background-color: #45a049;
+        }
+        .menu .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="{% url 'home' %}" class="button">Home</a>
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="button">Logout</button>
+        </form>
+        {% else %}
+        <a href="{% url 'login' %}" class="button">Login</a>
+        <a href="{% url 'register' %}" class="button">Register</a>
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="room-info">
+            <img src="{{ room.image_url }}" alt="Image of room {{ room.room_number }}">
+            <h2>{{ room.room_number }}</h2>
+            <p>Type: {{ room.room_type }}</p>
+            <p>Description: {{ room.description }}</p>
+            <p>Price: ${{ room.price }}</p>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <label for="check_in">Check-in:</label>
+            <input type="date" id="check_in" name="check_in" required>
+            <br><br>
+            <label for="check_out">Check-out:</label>
+            <input type="date" id="check_out" name="check_out" required>
+            <br><br>
+            <button type="submit" class="button">Reserve Room</button>
+        </form>
+    </div>
+</body>
+</html>
+

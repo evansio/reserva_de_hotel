@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room Detail</title>
+</head>
+<body>
+    <h1>{{ room.room_number }} - {{ room.room_type }}</h1>
+    <p>Price: {{ room.price }}</p>
+    {% if room.is_available %}
+        <a href="{% url 'reserve_room' room.pk %}">Reserve Now</a>
+    {% else %}
+        <p>This room is not available.</p>
+    {% endif %}
+</body>
+</html>

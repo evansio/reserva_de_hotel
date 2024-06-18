@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room List</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .room-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .room {
+            width: calc(33.33% - 20px); /* Aproximadamente un tercio del contenedor con un pequeño espacio entre ellas */
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .room img {
+            width: 100%;
+            max-height: 200px; /* Altura máxima de la imagen */
+            object-fit: cover; /* Para mantener la relación de aspecto */
+            border-radius: 5px;
+        }
+        .room h3 {
+            margin-top: 10px;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .menu .button {
+            background-color: #45a049;
+        }
+        .menu .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="{% url 'home' %}" class="button">Home</a>
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="button">Logout</button>
+        </form>
+        {% if user.is_superuser %}
+        <a href="{% url 'occupancy_stats' %}" class="button">View Occupancy Stats</a>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'login' %}" class="button">Login</a>
+        <a href="{% url 'register' %}" class="button">Register</a>
+        {% endif %}
+    </div>
+    <div class="container">
+        <h1>Room List</h1>
+        <div class="room-container">
+            {% for room in rooms %}
+            <div class="room">
+                <img src="{{ room.image_url }}" alt="Room Image">
+                <h3>{{ room.room_number }} - {{ room.room_type }}</h3>
+                {% if room.other_images %}
+                    <div>
+                        {% for image in room.other_images %}
+                        <img src="{{ image }}" alt="Room Image" style="width: 50px; height: 50px; margin: 5px;">
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if room.is_available %}
+                <a href="{% url 'reserve_room' room.pk %}" class="button">Reserve Now</a>
+                {% else %}
+                <span class="button" style="background-color: grey; cursor: not-allowed;">Not Available</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
