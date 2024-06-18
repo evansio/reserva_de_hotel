@@ -1,5 +1,3 @@
-# Reserva de Hotel
-
 # Proyecto de Reserva de Habitaciones
 
 Este proyecto es una aplicación web desarrollada en Django para la reserva de habitaciones. Los usuarios pueden registrarse, iniciar sesión, ver una lista de habitaciones disponibles y realizar reservas.
